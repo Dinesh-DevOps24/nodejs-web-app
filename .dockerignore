@@ -1,0 +1,4 @@
+Dockerfile.test
+node-modules
+.gitignore
+.git
