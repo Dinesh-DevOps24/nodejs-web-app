@@ -21,8 +21,8 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             export NVM_DIR="$HOME/.nvm"
-            source $NVM_DIR/nvm.sh
-
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            nvm use 16
             cd /home/ec2-user/node-app/nodejs-web-app/server
 
             git fetch origin
@@ -31,4 +31,4 @@ jobs:
             npm install
             npm run build
 
-            pm2 restart node-app || pm2 start src/index.js --name node-app
+            /home/ec2-user/.nvm/versions/node/v16.20.2/bin/pm2 restart node-app || /home/ec2-user/.nvm/versions/node/v16.20.2/bin/pm2 start src/index.js --name node-app
