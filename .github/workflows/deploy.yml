@@ -32,4 +32,3 @@ steps:
         npm run build
 
         pm2 restart node-app || pm2 start src/index.js --name node-app
-```
