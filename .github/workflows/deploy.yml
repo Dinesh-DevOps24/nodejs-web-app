@@ -31,4 +31,4 @@ jobs:
             npm install
             npm run build
 
-            /home/ec2-user/.nvm/versions/node/v16.20.2/bin/pm2 restart node-app || /home/ec2-user/.nvm/versions/node/v16.20.2/bin/pm2 start src/index.js --name node-app
+            ~/.nvm/versions/node/v16.20.2/bin/pm2 restart node-app || ~/.nvm/versions/node/v16.20.2/bin/pm2 start src/index.js --name node-app
