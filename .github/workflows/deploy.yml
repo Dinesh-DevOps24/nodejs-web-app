@@ -25,7 +25,7 @@ jobs:
 
             # Load NVM
             export NVM_DIR="$HOME/.nvm"
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
             # Use Node 16
             nvm use 16
@@ -33,17 +33,19 @@ jobs:
             # Go to project
             cd /home/ec2-user/node-app/nodejs-web-app/server
 
-            # Pull latest code
-            git pull origin main
+            # Ensure clean latest code
+            git fetch origin
+            git reset --hard origin/main
 
-            # Install dependencies
+            # Install dependencies clean
+            rm -rf node_modules package-lock.json
             npm install
 
-            # Restart app
+            # Restart app safely
             pm2 delete node-app || true
             pm2 start src/index.js --name node-app
 
-            # Save pm2
+            # Save PM2 process
             pm2 save
 
-            echo "✅ Deployment completed"
+            
